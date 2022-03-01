@@ -1,4 +1,4 @@
-# the-biggest-cat-astrophe
+# The biggest Cat-astrophe
 
 ## Build Setup
 
