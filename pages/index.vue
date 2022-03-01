@@ -6,28 +6,14 @@
     </header>
     
     <section class="main-section">
-      <ul v-if="!loading" class="cat-grid">
-        <li v-for="(cat, index) in cats" v-bind:key="index">
-          <div class="cat-box" v-b-modal.modal-center @click="modalCat = cat">
-            <p>See more...</p>
-            <img :src="cat.url" />
-          </div>
-        </li>
-      </ul>
+      <cat-grid v-if="!loading" :cats="cats" @setModalCat="setModalCat" />
 
       <div v-else class="load">
          <b-spinner variant="primary" label="Spinning"></b-spinner>
       </div>
     </section>
 
-    <b-modal id="modal-center"class="modal fade" role='dialog' data-backdrop="false" centered hide-footer hide-header>
-      <img :src="modalCat.url" class="modal-img" />
-      <div class="info-wrapper">
-        <p>Height: {{ modalCat.height }}</p>
-        <p>Width: {{ modalCat.width }}</p>
-        <p>Url: {{ modalCat.url }}</p>
-      </div>
-    </b-modal>
+    <modal-cat :cat="modalCat" />
 
     <footer>
       <b-pagination
@@ -41,7 +27,14 @@
 </template>
 
 <script>
+import ModalCat from '../components/ModalCat.vue'
+import CatGrid from '../components/CatGrid.vue'
+
 export default {
+  components: {
+    'modal-cat': ModalCat,
+    'cat-grid': CatGrid,
+  },
   data() {
     return {
       cats: [],
@@ -78,7 +71,10 @@ export default {
       } finally {
         this.loading = false
       }
-    }
+    },
+    setModalCat(cat) {
+      this.modalCat = cat
+    },
   },
   async mounted() {
     await this.fetchCatImages()
