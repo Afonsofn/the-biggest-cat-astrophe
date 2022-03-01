@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: 'ModalCat',
   props: ['cat'],
 }
 </script>

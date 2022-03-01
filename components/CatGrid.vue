@@ -11,6 +11,7 @@
 
 <script>
 export default {
+    name: 'CatGrid',
     props: ['cats'],
     methods: {
         setModalCat(cat) {

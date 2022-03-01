@@ -31,6 +31,7 @@ import ModalCat from '../components/ModalCat.vue'
 import CatGrid from '../components/CatGrid.vue'
 
 export default {
+  name: 'Home',
   components: {
     'modal-cat': ModalCat,
     'cat-grid': CatGrid,
